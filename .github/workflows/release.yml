@@ -51,7 +51,6 @@ jobs:
           name: net6.0
           tag: v${{ env.PLUGIN_VERSION }}
           commitish: ${{ env.GITHUB_SHA }}
-          name: Deemix Plugin
           body: >
             Lidarr plugin to add Deemix support
 
