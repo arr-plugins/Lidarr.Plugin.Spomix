@@ -77,5 +77,5 @@ jobs:
           draft: true
           prerelease: true
           files: >
-            publish/${{ env.PLUGIN_NAME }}.net6.0.zip
+            ${{ env.PLUGIN_NAME }}.net6.0.zip
           gzip: false
