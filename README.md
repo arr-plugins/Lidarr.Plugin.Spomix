@@ -1,40 +1,41 @@
 # Lidarr Spotify Plugin
 
-This is a plugin for Lidarr that allows users to search for and download music from Spotify. It is designed to provide a seamless integration with the Lidarr application, enabling users to manage their music library efficiently.
+A Lidarr plugin for searching and downloading music from Spotify, inspired by the Deemix plugin (for Deezer).
 
 ## Features
 
-- Search for tracks on Spotify
-- Download tracks directly to your Lidarr library
-- Easy integration with Lidarr
+- Search for tracks, albums, and artists on Spotify
+- Download tracks directly from Spotify (where permitted)
+- Integrates with Lidarr's plugin system
 
-## Installation
+## Requirements
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/lidarr-spotify-plugin.git
-   ```
+- .NET 8.0 SDK
+- A Spotify Developer account and API credentials
 
-2. Navigate to the project directory:
-   ```
-   cd lidarr-spotify-plugin
-   ```
+## Building
 
-3. Install the required dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
-
-4. Configure the plugin in Lidarr by adding it to the plugins directory.
+```sh
+dotnet restore Lidarr.SpotifyPlugin/Lidarr.SpotifyPlugin.csproj
+dotnet build Lidarr.SpotifyPlugin/Lidarr.SpotifyPlugin.csproj --configuration Release
+dotnet pack Lidarr.SpotifyPlugin/Lidarr.SpotifyPlugin.csproj --configuration Release --output .
+```
 
 ## Usage
 
-Once installed, the plugin will be available in the Lidarr interface. You can use it to search for music on Spotify and download tracks directly to your library.
+1. Configure your Spotify API credentials in the plugin settings.
+2. Install the `.nupkg` file in Lidarr via the plugin manager.
+3. Use Lidarr to search and download music from Spotify.
+
+## Development
+
+- Main plugin code is in `Lidarr.SpotifyPlugin/`
+- Uses [SpotifyAPI-NET](https://github.com/JohnnyCrazy/SpotifyAPI-NET) for Spotify integration
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a pull request or open an issue for any suggestions or improvements.
+Pull requests are welcome! Please open an issue first to discuss major changes.
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for more details.
+MIT License

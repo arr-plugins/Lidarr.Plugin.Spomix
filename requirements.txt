@@ -1,4 +1,0 @@
-requests
-spotipy
-lidarr-api
-flask

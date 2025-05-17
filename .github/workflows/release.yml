@@ -16,22 +16,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
         with:
-          python-version: '3.11'
+          dotnet-version: '8.0.x'
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r src/requirements.txt
+      - name: Restore dependencies
+        run: dotnet restore Lidarr.SpotifyPlugin/Lidarr.SpotifyPlugin.csproj
 
-      - name: Build plugin package
-        run: |
-          cd src
-          zip -r ../lidarr-spotify-plugin.zip .
+      - name: Build
+        run: dotnet build Lidarr.SpotifyPlugin/Lidarr.SpotifyPlugin.csproj --configuration Release
+
+      - name: Pack
+        run: dotnet pack Lidarr.SpotifyPlugin/Lidarr.SpotifyPlugin.csproj --configuration Release --output .
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: lidarr-spotify-plugin.zip
+          files: "*.nupkg"
