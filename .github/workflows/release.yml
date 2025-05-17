@@ -21,14 +21,8 @@ jobs:
         with:
           dotnet-version: '6.0.x'
 
-      - name: Restore dependencies
-        run: dotnet restore src/Lidarr.SpotifyPlugin/Lidarr.SpotifyPlugin.csproj
-
       - name: Build
-        run: dotnet build src/Lidarr.SpotifyPlugin/Lidarr.SpotifyPlugin.csproj --configuration Release
-
-      - name: Publish
-        run: dotnet publish src/Lidarr.SpotifyPlugin/Lidarr.SpotifyPlugin.csproj --configuration Release --framework net6.0 --runtime linux-x64 --self-contained true --output publish
+        run: dotnet build src/lidarr-spotify-plugin.sln --configuration Release
 
       - name: Zip plugin
         run: cd publish && zip -r ../lidarr-spotify-plugin.zip .
