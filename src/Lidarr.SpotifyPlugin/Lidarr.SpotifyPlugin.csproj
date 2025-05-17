@@ -17,6 +17,6 @@
     <MakeDir Directories="$(SolutionDir)\..\publish" />
     <ZipDirectory
         SourceDirectory="$(PublishDir)"
-        DestinationFile="$(SolutionDir)\..\publish\lidarr-spotify-plugin.net6.0.zip" />
+        DestinationFile="$(SolutionDir)\..\publish\Lidarr.Plugin.Spotify.net6.0.zip" />
   </Target>
 </Project>
