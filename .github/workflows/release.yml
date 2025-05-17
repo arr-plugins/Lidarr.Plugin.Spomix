@@ -49,8 +49,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: net6.0
+      - uses: meeDamian/github-release@2.0
+        with:
           tag: v${{ env.PLUGIN_VERSION }}
           commitish: ${{ env.GITHUB_SHA }}
+          name: Deemix Plugin
           body: >
             Lidarr plugin to add Deemix support
 
