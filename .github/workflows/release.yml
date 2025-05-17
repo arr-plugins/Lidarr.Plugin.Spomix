@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.framework }}
-          path: ./publish/lidarr-spotify-plugin.zip
+          path: publish/lidarr-spotify-plugin.zip
   publish:
     needs: build
     if: github.ref == 'refs/heads/master'
@@ -62,5 +62,5 @@ jobs:
           draft: true
           prerelease: true
           files: >
-            ${{ env.PLUGIN_NAME }}.net6.0.zip
+            publish/${{ env.PLUGIN_NAME }}.net6.0.zip
           gzip: false
