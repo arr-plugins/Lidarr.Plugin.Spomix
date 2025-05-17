@@ -47,10 +47,10 @@ jobs:
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
-      - name: Download Artifact (net6.0)
+      - name: Download Artifact (${{ matrix.framework }})
         uses: actions/download-artifact@v4
         with:
-          name: net6.0
+          name: ${{ matrix.framework }}
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
