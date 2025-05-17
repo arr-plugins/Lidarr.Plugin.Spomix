@@ -32,9 +32,8 @@ jobs:
         with:
           dotnet-version: '6.0.x'
 
-      - name: Publish
-        run: dotnet publish src/lidarr-spotify-plugin.sln -c Release -f ${{ matrix.framework }}
-
+      - name: Build
+        run: dotnet publish src/*.sln -c Release -f ${{ matrix.framework }}
       - name: Upload net core
         uses: actions/upload-artifact@v4
         with:
@@ -62,5 +61,5 @@ jobs:
           draft: true
           prerelease: true
           files: >
-            publish/${{ env.PLUGIN_NAME }}.net6.0.zip
+            publish/${{ env.PLUGIN_NAME }}.zip
           gzip: false
