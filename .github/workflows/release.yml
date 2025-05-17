@@ -54,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.framework }}
-          path: ./${{ env.PLUGIN_NAME }}.${{ matrix.framework }}.zip
+          path: publish/${{ env.PLUGIN_NAME }}.${{ matrix.framework }}.zip
   publish:
     needs: build
     if: github.ref == 'refs/heads/master'
@@ -77,5 +77,5 @@ jobs:
           draft: true
           prerelease: true
           files: >
-            ${{ env.PLUGIN_NAME }}.net6.0.zip
+            publish/${{ env.PLUGIN_NAME }}.net6.0.zip
           gzip: false
