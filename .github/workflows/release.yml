@@ -34,14 +34,11 @@ jobs:
       - name: Publish
         run: dotnet publish src/lidarr-spotify-plugin.sln -c Release -f ${{ matrix.framework }}
 
-      - name: Zip plugin
-        run: cd publish && zip -r ../lidarr-spotify-plugin.zip .
-
       - name: Upload net core
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.framework }}
-          path: ./lidarr-spotify-plugin.zip
+          path: ./publish/lidarr-spotify-plugin.zip
   publish:
     needs: build
     if: github.ref == 'refs/heads/master'
@@ -54,4 +51,4 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: lidarr-spotify-plugin.zip
+          files: ./publishlidarr-spotify-plugin.zip
