@@ -4,8 +4,10 @@ on:
   push:
     branches:
       - master
-    tags:
-      - 'v*'
+    tags-ignore:
+      - '**'
+  pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -15,7 +17,7 @@ env:
   PLUGIN_VERSION: 1.0.0.${{ github.run_number }}
 
 jobs:
-  build-and-release:
+  build:
     strategy:
       matrix:
         framework: [ net6.0 ]
@@ -29,15 +31,26 @@ jobs:
         with:
           dotnet-version: '6.0.x'
 
-      - name: Build
-        run: dotnet build src/lidarr-spotify-plugin.sln --configuration Release
+      - name: Publish
+        run: dotnet publish src/lidarr-spotify-plugin.sln -c Release -f ${{ matrix.framework }}
+
+      - name: Zip plugin
+        run: cd publish && zip -r ../lidarr-spotify-plugin.zip .
 
       - name: Upload net core
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.framework }}
-          path: ./${{ env.PLUGIN_NAME }}.${{ matrix.framework }}.zip
-
+          path: ./lidarr-spotify-plugin.zip
+  publish:
+    needs: build
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifact (net6.0)
+        uses: actions/download-artifact@v4
+        with:
+          name: net6.0
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
