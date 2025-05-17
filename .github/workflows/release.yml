@@ -14,7 +14,8 @@ permissions:
 
 env:
   PLUGIN_NAME: lidarr-spotify-plugin
-  PLUGIN_VERSION: 1.0.0.${{ github.run_number }}
+  PLUGIN_VERSION: 1.0.0
+  MINIMUM_LIDARR_VERSION: 2.9.4.4538
 
 jobs:
   build:
@@ -44,11 +45,19 @@ jobs:
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
-      - name: Download Artifact (${{ matrix.framework }})
+      - name: Download Artifact (net6.0)
         uses: actions/download-artifact@v4
         with:
-          name: ${{ matrix.framework }}
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: ./publishlidarr-spotify-plugin.zip
+          name: net6.0
+          tag: v${{ env.PLUGIN_VERSION }}
+          commitish: ${{ env.GITHUB_SHA }}
+          name: Deemix Plugin
+          body: >
+            Lidarr plugin to add Deemix support
+
+            Minimum Lidarr Version: ${{ env.MINIMUM_LIDARR_VERSION }}
+          draft: true
+          prerelease: true
+          files: >
+            ${{ env.PLUGIN_NAME }}.net6.0.zip
+          gzip: false
