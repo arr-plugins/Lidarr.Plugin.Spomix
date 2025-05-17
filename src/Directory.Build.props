@@ -1,0 +1,12 @@
+<Project>
+  <PropertyGroup>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <AssemblyConfiguration>Release</AssemblyConfiguration>
+    <Authors>YourName</Authors>
+    <Company>YourCompany</Company>
+    <Copyright>YourCopyright</Copyright>
+    <Description>Lidarr plugin to add Spotify support</Description>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+</Project>
