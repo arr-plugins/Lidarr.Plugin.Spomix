@@ -1,4 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFrameworks>net6.0</TargetFrameworks>
   </PropertyGroup>
@@ -13,10 +14,10 @@
     </ProjectReference>
   </ItemGroup>
   <Target Name="ZipOutputPath" AfterTargets="Publish">
-    <RemoveDir Directories="$(SolutionDir)\..\publish" />
-    <MakeDir Directories="$(SolutionDir)\..\publish" />
     <ZipDirectory
         SourceDirectory="$(PublishDir)"
-        DestinationFile="$(SolutionDir)\..\publish\Lidarr.Plugin.Spotify.net6.0.zip" />
+        DestinationFile="$(SolutionDir)\..\Lidarr.Plugin.Spomix.$(TargetFramework).zip" />
   </Target>
+
+
 </Project>
